@@ -1,0 +1,69 @@
+{
+  "metrics": [
+    {
+      "id": "2",
+      "name": "Customers",
+      "value": "245"
+    },
+    {
+      "id": "3",
+      "name": "Active Projects",
+      "value": "5"
+    },
+    {
+      "id": "689d",
+      "name": "blogs",
+      "value": "90000"
+    },
+    {
+      "id": "8d48",
+      "name": "log",
+      "value": "90"
+    }
+  ],
+  "dashboard": {
+    "monthlyRevenue": [
+      { "month": "January", "value": 10000 },
+      { "month": "February", "value": 12000 },
+      { "month": "March", "value": 11000 },
+      { "month": "April", "value": 14000 }
+    ],
+    "summary": {
+      "projects": 12,
+      "customers": 245,
+      "tasks": 32
+    }
+  },
+  "insights": [
+    {
+      "title": "Steady Customer Growth",
+      "description": "Your customer base has grown by 12% this quarter compared to last quarter.",
+      "type": "growth"
+    },
+    {
+      "title": "Revenue Opportunity",
+      "description": "March's sales showed strong performance. Consider introducing a referral bonus program.",
+      "type": "tip"
+    },
+    {
+      "title": "Project Overload Warning",
+      "description": "Active projects have exceeded 10. Ensure enough resources are allocated to meet deadlines.",
+      "type": "warning"
+    },
+    {
+      "title": "Marketing Performance",
+      "description": "Social media campaigns generated 30% more leads this month than average.",
+      "type": "growth"
+    },
+    {
+      "title": "Retention Suggestion",
+      "description": "Customer churn rate increased by 3%. Introduce loyalty rewards to improve retention.",
+      "type": "tip"
+    },
+    {
+      "title": "Inventory Alert",
+      "description": "Two high-demand products are running low in stock. Restock immediately to avoid lost sales.",
+      "type": "warning"
+    }
+  ]
+}
