@@ -4,6 +4,10 @@ from sqlalchemy.orm import Session
 
 import models, schemas, crud
 from database import SessionLocal, engine, Base
+import json, pathlib
+from fastapi.responses import JSONResponse
+
+BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 # Create tables in the database
 Base.metadata.create_all(bind=engine)
@@ -13,7 +17,7 @@ app = FastAPI()
 # Enable CORS so frontend can access backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=["https://smart-ops-bhatiyani.vercel.app/"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,6 +35,22 @@ def get_db():
 # ===========================
 # API ROUTES
 # ===========================
+
+@app.get("/dashboard")
+def get_dashboard():
+    try:
+        data = json.loads((BASE_DIR / "db.json").read_text())
+        return JSONResponse(content=data.get("dashboard", {}))
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+@app.get("/insights")
+def get_insights():
+    try:
+        data = json.loads((BASE_DIR / "db.json").read_text())
+        return JSONResponse(content=data.get("insights", []))
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 @app.get("/")
 def read_root():
