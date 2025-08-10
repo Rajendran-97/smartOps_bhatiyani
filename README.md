@@ -38,24 +38,43 @@ Other Tools:
 Project Structure
 
 smartOps_bhatiyani/
+
 │
+
 ├── smartOps_bhatiyani_frontend/
+
 │ ├── src/
+
 │ │ ├── components/ #charts and kpiCards
+
 │ │ ├── pages/ # Page components (Dashboard, Metrics, Insights)
+
 │ │ ├── App.js # Main app routing
+
 │ │ └── index.js # React entry point
+
 │ ├── package.json # Frontend dependencies
+
 │
+
 ├── smartOps_bhatiyani_backend/ # FastAPI backend
+
 │ ├── main.py # Main API entry point
+
 │ ├── database.py # Database connection
+
 │ ├── models.py # SQLAlchemy models
+
 │ ├── routes/metrics.py # Metrics CRUD endpoints
+
 │
+
 ├── db.json # Mock data for JSON server
+
 ├── prompts.md # AI prompts used in development
+
 ├── README.md # Project documentation
+
 
 Installation & Setup Instructions
 
