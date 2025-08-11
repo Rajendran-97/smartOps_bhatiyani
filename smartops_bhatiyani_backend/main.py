@@ -18,7 +18,7 @@ app = FastAPI()
 # Enable CORS so frontend can access backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://smart-ops-bhatiyani.vercel.app/"],  # React dev server
+    allow_origins=["*"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
