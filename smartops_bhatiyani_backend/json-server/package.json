@@ -1,14 +1,11 @@
 {
   "name": "smartops-json-server",
   "version": "1.0.0",
-  "private": true,
+  "main": "index.js",
   "scripts": {
-    "start": "json-server --watch db.json --port $PORT 10000 --host 0.0.0.0"
+    "start": "json-server --watch db.json --port 10000 --host 0.0.0.0"
   },
   "dependencies": {
-    "json-server": "^0.17.3"
-  },
-  "engines": {
-    "node": "16.x"
+    "json-server": "^0.17.4"
   }
 }
