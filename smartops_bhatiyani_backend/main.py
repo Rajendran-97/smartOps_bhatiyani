@@ -6,6 +6,7 @@ import models, schemas, crud
 from database import SessionLocal, engine, Base
 import json, pathlib
 from fastapi.responses import JSONResponse
+from pathlib import Path
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
@@ -22,6 +23,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+BASE_DIR = Path(__file__).resolve().parent  # backend folder
+DB_JSON = BASE_DIR / "db.json"
 
 # Dependency to get DB session
 def get_db():
