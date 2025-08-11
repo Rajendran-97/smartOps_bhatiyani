@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Typography,
   Box,
-  Paper,
   Grid,
   Avatar, 
   Divider
@@ -11,25 +10,23 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import WarningIcon from '@mui/icons-material/Warning';
 
+// API Base URL from environment
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export default function Insights() {
   const [insights, setInsights] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/insights")
+    fetch(`${API_BASE}/insights`)
       .then((res) => res.json())
-      .then((data) => setInsights(data));
+      .then((data) => setInsights(data))
+      .catch((err) => console.error("Error fetching insights:", err));
   }, []);
 
   const iconMap = {
     tip: <LightbulbIcon fontSize="large" />,
     growth: <TrendingUpIcon fontSize="large" />,
     warning: <WarningIcon fontSize="large" />,
-  };
-
-  const colorMap = {
-    tip: '#1976d2',
-    growth: '#388e3c',
-    warning: '#f57c00',
   };
 
   return (
@@ -44,46 +41,43 @@ export default function Insights() {
       <Typography variant="body2" color="textSecondary" gutterBottom>
         8/110, Ganapathy Nagar, Coimbatore, Tamil Nadu.
       </Typography>
-            <Divider sx={{ my: 2 }} />
 
+      <Divider sx={{ my: 2 }} />
 
-      {/* Insights Grid */}
-     <Grid container spacing={3} sx={{ flexGrow: 1, mt: 2 }}>
-  {insights.map((insight, index) => (
-    <Grid item xs={12} key={index}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Avatar
-          sx={{
-            bgcolor:
-              insight.type === 'growth'
-                ? '#388e3c'
-                : insight.type === 'warning'
-                ? '#f57c00'
-                : '#1976d2',
-            width: 48,
-            height: 48,
-          }}
-        >
-          {iconMap[insight.type]}
-        </Avatar>
-        <Box>
-          <Typography variant="h6" fontWeight="bold">
-            {insight.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {insight.description}
-          </Typography>
-        </Box>
-      </Box>
-    </Grid>
-  ))}
-</Grid>
+      {/* Insights List */}
+      <Grid container spacing={3} sx={{ flexGrow: 1, mt: 2 }}>
+        {insights.map((insight, index) => (
+          <Grid item xs={12} key={index}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Avatar
+                sx={{
+                  bgcolor:
+                    insight.type === 'growth'
+                      ? '#388e3c'
+                      : insight.type === 'warning'
+                      ? '#f57c00'
+                      : '#1976d2',
+                  width: 48,
+                  height: 48,
+                }}
+              >
+                {iconMap[insight.type]}
+              </Avatar>
+              <Box>
+                <Typography variant="h6" fontWeight="bold">
+                  {insight.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {insight.description}
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
 
-
-
-      {/* Footer*/}
-            <Divider sx={{ my: 3 }} />
-      
+      {/* Footer */}
+      <Divider sx={{ my: 3 }} />
       <Box sx={{ textAlign: 'center', py: 2, mt: 3 }}>
         <Typography variant="body2" color="textSecondary">
           © {new Date().getFullYear()} Rj Pvt. Ltd. | All Rights Reserved

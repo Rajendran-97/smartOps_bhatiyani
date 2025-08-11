@@ -12,17 +12,21 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import PeopleIcon from '@mui/icons-material/People';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 
+// Use environment variable for API base URL
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export default function Dashboard() {
   const [summaryData, setSummaryData] = useState({});
   const [revenueData, setRevenueData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/dashboard')
+    fetch(`${API_BASE}/dashboard`)
       .then((res) => res.json())
       .then((data) => {
-        setSummaryData(data.summary);
-        setRevenueData(data.monthlyRevenue);
-      });
+        setSummaryData(data.summary || {});
+        setRevenueData(data.monthlyRevenue || []);
+      })
+      .catch((err) => console.error("Error fetching dashboard data:", err));
   }, []);
 
   return (
@@ -45,7 +49,7 @@ export default function Dashboard() {
       {/* KPI Cards */}
       <Grid container spacing={3} mb={4}>
         <Grid item xs={12} sm={4}>
-          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#e3f2fd' }}>
+          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#e3f2fd', height: '100%' }}>
             <Avatar sx={{ bgcolor: '#1976d2', mr: 2 }}>
               <WorkOutlineIcon />
             </Avatar>
@@ -56,7 +60,7 @@ export default function Dashboard() {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#f1f8e9' }}>
+          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#f1f8e9', height: '100%' }}>
             <Avatar sx={{ bgcolor: '#388e3c', mr: 2 }}>
               <PeopleIcon />
             </Avatar>
@@ -67,7 +71,7 @@ export default function Dashboard() {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#fff3e0' }}>
+          <Paper elevation={4} sx={{ p: 2, display: 'flex', alignItems: 'center', bgcolor: '#fff3e0', height: '100%' }}>
             <Avatar sx={{ bgcolor: '#ef6c00', mr: 2 }}>
               <AssignmentTurnedInIcon />
             </Avatar>

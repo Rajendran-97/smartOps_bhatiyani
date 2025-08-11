@@ -19,11 +19,18 @@ export default function Metrics() {
   const [editId, setEditId] = useState(null);
   const [editMetric, setEditMetric] = useState({ name: '', value: '' });
 
-  // Fetch metrics
+  // ✅ Use your deployed backend URL here
+  const API_BASE = process.env.REACT_APP_API_URL || "https://smartops-bhatiyani-1.onrender.com/";
+
+  // Fetch metrics from backend
   const fetchMetrics = async () => {
-    const res = await fetch('http://localhost:8000/metrics');
-    const data = await res.json();
-    setMetrics(data);
+    try {
+      const res = await fetch(`${API_BASE}/metrics`);
+      const data = await res.json();
+      setMetrics(data);
+    } catch (err) {
+      console.error("Error fetching metrics:", err);
+    }
   };
 
   useEffect(() => {
@@ -33,7 +40,7 @@ export default function Metrics() {
   // Delete metric
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this metric?')) {
-      await fetch(`http://localhost:8000/metrics/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE}/metrics/${id}`, { method: 'DELETE' });
       fetchMetrics();
     }
   };
@@ -41,7 +48,7 @@ export default function Metrics() {
   // Add metric
   const handleAdd = async () => {
     if (!newMetric.name || !newMetric.value) return;
-    await fetch('http://localhost:8000/metrics', {
+    await fetch(`${API_BASE}/metrics`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newMetric),
@@ -59,7 +66,7 @@ export default function Metrics() {
   // Update metric
   const handleUpdate = async () => {
     if (!editMetric.name || !editMetric.value) return;
-    await fetch(`http://localhost:8000/metrics/${editId}`, {
+    await fetch(`${API_BASE}/metrics/${editId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editMetric),
