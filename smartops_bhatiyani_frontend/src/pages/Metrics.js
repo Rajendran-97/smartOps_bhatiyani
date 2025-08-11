@@ -19,13 +19,10 @@ export default function Metrics() {
   const [editId, setEditId] = useState(null);
   const [editMetric, setEditMetric] = useState({ name: '', value: '' });
 
-  // ✅ Use your deployed backend URL here
-  const API_BASE = process.env.REACT_APP_API_URL || "https://smartops-bhatiyani-1.onrender.com/";
-
   // Fetch metrics from backend
   const fetchMetrics = async () => {
     try {
-      const res = await fetch(`${API_BASE}/metrics`);
+      const res = await fetch(`https://smartops-bhatiyani-1.onrender.com/metrics`);
       const data = await res.json();
       setMetrics(data);
     } catch (err) {

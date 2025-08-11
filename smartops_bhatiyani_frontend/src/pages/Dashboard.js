@@ -12,15 +12,12 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import PeopleIcon from '@mui/icons-material/People';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 
-// Use environment variable for API base URL
-const API_BASE = process.env.REACT_APP_API_URL;
-
 export default function Dashboard() {
   const [summaryData, setSummaryData] = useState({});
   const [revenueData, setRevenueData] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/dashboard`)
+    fetch(`https://smartops-bhatiyani-1.onrender.com/dashboard`)
       .then((res) => res.json())
       .then((data) => {
         setSummaryData(data.summary || {});

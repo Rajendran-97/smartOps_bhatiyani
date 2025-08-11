@@ -10,14 +10,12 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import WarningIcon from '@mui/icons-material/Warning';
 
-// API Base URL from environment
-const API_BASE = process.env.REACT_APP_API_URL;
 
 export default function Insights() {
   const [insights, setInsights] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/insights`)
+    fetch(`https://smartops-bhatiyani-1.onrender.com/insights`)
       .then((res) => res.json())
       .then((data) => setInsights(data))
       .catch((err) => console.error("Error fetching insights:", err));
